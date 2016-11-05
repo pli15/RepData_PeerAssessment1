@@ -212,9 +212,9 @@ hr {
 <p>The variables included in this dataset are:</p>
 
 <ol>
-<li>steps: Number of steps taking in a 5-minute interval (missing values are coded as NA)???????)</li>
-<li>ate: The date on which the measurement was taken in YYYY-MM-DD format
-in3. terval: Identifier for the 5-minute interval in which measurement was taken</li>
+<li>steps: Number of steps taking in a 5-minute interval (missing values are coded as NA)</li>
+<li>Date: The date on which the measurement was taken in YYYY-MM-DD format</li>
+<li>Interval: Identifier for the 5-minute interval in which measurement was taken</li>
 </ol>
 
 <h3>Loading and preprocessing the data</h3>
@@ -307,10 +307,10 @@ with(data_stepbyinterval,plot(steps~interval,main=&quot;Avg Step Per Day by Inte
 
 <h3>Imputing missing values</h3>
 
-<p>Note that there are a number of days/intervals where there are missing values (coded as ????????). The presence of missing days may introduce bias into some calculations or summaries of the data.</p>
+<p>Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.</p>
 
 <ol>
-<li>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with ????????s)</li>
+<li>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</li>
 </ol>
 
 <pre><code class="r">sum(is.na(data_raw))

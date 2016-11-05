@@ -9,9 +9,9 @@ This assignment makes use of data from a personal activity monitoring device. Th
 ### Variables
 The variables included in this dataset are:
 
-1. steps: Number of steps taking in a 5-minute interval (missing values are coded as NA)???????)
-2. ate: The date on which the measurement was taken in YYYY-MM-DD format
-in3. terval: Identifier for the 5-minute interval in which measurement was taken
+1. steps: Number of steps taking in a 5-minute interval (missing values are coded as NA)
+2. Date: The date on which the measurement was taken in YYYY-MM-DD format
+3. Interval: Identifier for the 5-minute interval in which measurement was taken
 
 ### Loading and preprocessing the data
 
@@ -99,9 +99,9 @@ data_stepbyinterval[which.max(data_stepbyinterval$steps),]
 The 835th interval contains the maximum number of steps, which is 206 steps.
 
 ### Imputing missing values
-Note that there are a number of days/intervals where there are missing values (coded as ????????). The presence of missing days may introduce bias into some calculations or summaries of the data.
+Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with ????????s)
+1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 ```r
 sum(is.na(data_raw))

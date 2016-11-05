@@ -41,13 +41,13 @@ head(data_raw)
 ### What is mean total number of steps taken per day
 For this part of the assignment, you can ignore the missing values in the dataset.
 
-1. Calculate the total number of steps taken per day
+#### Calculate the total number of steps taken per day
 
 ```r
 data_step<-aggregate(steps ~ date, data_raw, sum)
 ```
 
-2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
+#### Make a histogram of the total number of steps taken each day
 
 ```r
 hist(data_step$steps,main="Mean of Total Number of Steps Per Day",xlab="steps")
@@ -55,7 +55,8 @@ hist(data_step$steps,main="Mean of Total Number of Steps Per Day",xlab="steps")
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+#####Calculate and report the mean and median of the total number of steps taken per day
+The mean of steps taken per day is 10766 steps and the median of steps taken per day is 10765 steps.Please see the calculation below.
 
 ```r
 step_mean<-mean(data_step$steps)
@@ -74,10 +75,10 @@ step_median
 ```
 ## [1] 10765
 ```
-The mean of steps taken per day is 10766 steps and the median of steps taken per day is 10765 steps.
 
 ### What is the average daily activity pattern?
-1. Make a time series plot (i.e.TYPE="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+#### Make a time series plot 
+Make a time series plot (i.e.TYPE="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 ```r
 data_stepbyinterval<-aggregate(steps ~ interval, data_raw, mean)
@@ -86,7 +87,8 @@ with(data_stepbyinterval,plot(steps~interval,main="Avg Step Per Day by Interval"
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
-2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+#### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+The 835th interval contains the maximum number of steps, which is 206 steps.Please see the calculation below.
 
 ```r
 data_stepbyinterval[which.max(data_stepbyinterval$steps),]
@@ -96,12 +98,12 @@ data_stepbyinterval[which.max(data_stepbyinterval$steps),]
 ##     interval    steps
 ## 104      835 206.1698
 ```
-The 835th interval contains the maximum number of steps, which is 206 steps.
 
 ### Imputing missing values
 Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+#### Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+There are 2304 missing values.Please see the calculation below.
 
 ```r
 sum(is.na(data_raw))
@@ -110,10 +112,10 @@ sum(is.na(data_raw))
 ```
 ## [1] 2304
 ```
-There are 2304 missing values.
 
-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
-3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+#### Devise a strategy for filling in missing values. 
+#### Create a new dataset with the missing data filled in.
+The methodology is to find the missing value and replace it with the average number of steps in that particular interval.Please see the calculation below.
 
 ```r
 data_New <- data_raw 
@@ -127,9 +129,9 @@ sum(is.na(data_New))
 ```
 ## [1] 0
 ```
-The methodology is to find the missing value and replace it with the average number of steps in that particular interval.
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment?     What is the impact of imputing missing data on the estimates of the total daily number of steps?
+#### Make a histogram of the total number of steps taken each day 
+Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ```r
 data_step_New<-aggregate(steps ~ date, data_New, sum)
@@ -194,17 +196,17 @@ step_total_new
 ```
 
 ### Are there differences in activity patterns between weekdays and weekends?
-
 For this part the Weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
 
-1. Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+#### Create a new factor variable in the dataset with two levels - "weekday" and "weekend".
 
 ```r
 data_New$Weekflag<-weekdays(as.Date(data_New$date))
 data_New$Weekflag<-ifelse(data_New$Weekflag %in% c("Monday","Tuesday","Wednesday","Thursday","Friday"),"Weekday","Weekend")
 ```
 
-2. Make a panel plot containing a time series plot (i.e. tyle="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+#### Make a panel plot 
+The plot should contain a time series plot (i.e. tyle="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
 ```r
 data_New_plot<-aggregate(steps ~ Weekflag+interval, data_New, mean)
